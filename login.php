@@ -9,8 +9,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	// get their values
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-
-	if ( validate_user_creds($username, $password) ) {
+	$token = $_POST['token'];
+	if ( validate_user_creds($username, $password, $token) ) {
 		$_SESSION['username'] = $username;
 		header("Location: admin.php");
 	} else {
@@ -50,7 +50,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			<label for="password">Password: </label>
 			<input type="password" name="password">
 		</li>
-
+		<li>
+			<label for="token">Token: </label>
+			<input type="password" name="token">
+		</li>
 		<li>
 			<input type="submit" value="Login" name="loginForm">	
 		</li>
